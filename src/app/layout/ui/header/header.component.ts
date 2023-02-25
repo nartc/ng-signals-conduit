@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { NgIf } from '@angular/common';
+import { Component, Input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
@@ -20,42 +21,48 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
                             Home
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">
-                            <i class="ion-compose"></i>
-                            &nbsp;New Article
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">
-                            <i class="ion-gear-a"></i>
-                            &nbsp;Settings
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a
-                            class="nav-link"
-                            routerLink="/login"
-                            routerLinkActive="active"
-                            [routerLinkActiveOptions]="{ exact: true }"
-                        >
-                            Sign in
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a
-                            class="nav-link"
-                            routerLink="/register"
-                            routerLinkActive="active"
-                            [routerLinkActiveOptions]="{ exact: true }"
-                        >
-                            Sign up
-                        </a>
-                    </li>
+                    <ng-container *ngIf="isAuthenticated; else unauthenticated">
+                        <li class="nav-item">
+                            <a class="nav-link" href="">
+                                <i class="ion-compose"></i>
+                                &nbsp;New Article
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">
+                                <i class="ion-gear-a"></i>
+                                &nbsp;Settings
+                            </a>
+                        </li>
+                    </ng-container>
+                    <ng-template #unauthenticated>
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                routerLink="/login"
+                                routerLinkActive="active"
+                                [routerLinkActiveOptions]="{ exact: true }"
+                            >
+                                Sign in
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                routerLink="/register"
+                                routerLinkActive="active"
+                                [routerLinkActiveOptions]="{ exact: true }"
+                            >
+                                Sign up
+                            </a>
+                        </li>
+                    </ng-template>
                 </ul>
             </div>
         </nav>
     `,
-    imports: [RouterLink, RouterLinkActive],
+    imports: [RouterLink, RouterLinkActive, NgIf],
 })
-export class Header {}
+export class Header {
+    @Input() isAuthenticated = false;
+}
