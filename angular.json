@@ -35,7 +35,8 @@
                                     "maximumError": "4kb"
                                 }
                             ],
-                            "outputHashing": "all"
+                            "outputHashing": "all",
+                            "baseHref": "/ng-signals-conduit/"
                         },
                         "development": {
                             "buildOptimizer": false,
