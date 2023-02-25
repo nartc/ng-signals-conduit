@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
     selector: 'app-layout-header',
@@ -10,7 +11,14 @@ import { Component } from '@angular/core';
                 <ul class="nav navbar-nav pull-xs-right">
                     <li class="nav-item">
                         <!-- Add "active" class when you're on that page" -->
-                        <a class="nav-link active" href="">Home</a>
+                        <a
+                            class="nav-link"
+                            routerLink="/"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                        >
+                            Home
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="">
@@ -25,14 +33,29 @@ import { Component } from '@angular/core';
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Sign in</a>
+                        <a
+                            class="nav-link"
+                            routerLink="/login"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                        >
+                            Sign in
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Sign up</a>
+                        <a
+                            class="nav-link"
+                            routerLink="/register"
+                            routerLinkActive="active"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                        >
+                            Sign up
+                        </a>
                     </li>
                 </ul>
             </div>
         </nav>
     `,
+    imports: [RouterLink, RouterLinkActive],
 })
 export class Header {}
